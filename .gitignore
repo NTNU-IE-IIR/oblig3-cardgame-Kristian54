@@ -1,4 +1,5 @@
 # Files and folders to be ignored by git
+.DS_Store
 
 # IntelliJ specific files and folders
 .idea/
