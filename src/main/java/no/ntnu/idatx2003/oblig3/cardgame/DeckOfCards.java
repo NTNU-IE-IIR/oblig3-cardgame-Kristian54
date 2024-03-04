@@ -30,7 +30,7 @@ public class DeckOfCards {
     }
 
     PlayingCard cardToDeal = deckOfCards.get(n);
-    this.deckOfCards.remove(cardToDeal);
+    //this.deckOfCards.remove(cardToDeal);
 
     return cardToDeal;
   }

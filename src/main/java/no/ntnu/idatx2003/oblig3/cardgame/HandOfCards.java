@@ -66,4 +66,8 @@ public class HandOfCards {
       System.out.println(card.getAsString());
     }
   }
+
+    public ArrayList<PlayingCard> getHandOfCards() {
+        return handOfCards;
+    }
 }
