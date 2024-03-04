@@ -45,6 +45,22 @@ public class HandOfCards {
     }
   }
 
+  /**
+   * Checks if the hand of cards is a flush.
+   * A flush is a hand of cards where all the cards have the same suit.
+   *
+   * @return true if the hand of cards is a flush, false otherwise
+   */
+  public boolean isFlush() {
+    char suit = handOfCards.get(0).getSuit();
+    for (PlayingCard card : handOfCards) {
+      if (card.getSuit() != suit) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   public void printHand() {
     for (PlayingCard card : handOfCards) {
       System.out.println(card.getAsString());

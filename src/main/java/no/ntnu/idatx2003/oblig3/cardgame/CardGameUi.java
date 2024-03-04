@@ -4,7 +4,6 @@ package no.ntnu.idatx2003.oblig3.cardgame;
     import javafx.application.Application;
     import javafx.scene.Scene;
     import javafx.scene.layout.BorderPane;
-    import javafx.scene.layout.FlowPane;
     import javafx.scene.layout.VBox;
     import javafx.stage.Stage;
 
@@ -18,17 +17,21 @@ public class CardGameUi extends Application {
    */
   @Override
   public void start(Stage stage) throws Exception {
+    Button dealHand = new Button("Deal Hand");
+    Button checkHand = new Button("Check Hand");
+    dealHand.setPrefSize(100, 50);
+    checkHand.setPrefSize(100, 50);
 
     BorderPane rootNode = new BorderPane();
 
-    VBox leftPane = new VBox();
+    VBox rightPane = new VBox();
 
-    leftPane.setPadding(new javafx.geometry.Insets(10));
-    leftPane.setSpacing(10);
+    rightPane.setPadding(new javafx.geometry.Insets(10));
+    rightPane.setSpacing(10);
+    rightPane.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
+    rootNode.setRight(rightPane);
 
-    rootNode.setLeft(leftPane);
-
-
+    rightPane.getChildren().addAll(dealHand, checkHand);
     rootNode.setPadding(new javafx.geometry.Insets(5));
 
 
