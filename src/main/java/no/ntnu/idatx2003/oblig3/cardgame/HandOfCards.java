@@ -1,8 +1,10 @@
 package no.ntnu.idatx2003.oblig3.cardgame;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class HandOfCards {
+  private DeckOfCards deckOfCards;
   private ArrayList<PlayingCard> handOfCards;
 
   /**
@@ -13,14 +15,34 @@ public class HandOfCards {
    */
   public HandOfCards(DeckOfCards deckOfCards, int n) {
     this.handOfCards = new ArrayList<PlayingCard>();
+    setDeckOfCards(deckOfCards);
+    initializeHand(n);
   }
 
-  public ArrayList<PlayingCard> dealHand(int n) {
-    ArrayList<PlayingCard> hand = new ArrayList<PlayingCard>();
-    for (int i = 0; i < n; i++) {
-      hand.add(handOfCards.get(i));
+  private void setDeckOfCards(DeckOfCards deckOfCards) {
+    if (deckOfCards == null) {
+      throw new IllegalArgumentException("Parameter deckOfCards cannot be null");
     }
-    return hand;
+
+    this.deckOfCards = deckOfCards;
+  }
+
+  /**
+   * Initializes the hand of cards by dealing n cards from the deck of cards.
+   *
+   * @param n The number of cards to deal
+   */
+  public void initializeHand(int n) {
+    if (n < 1 || n > deckOfCards.getNumberOfCards()) {
+      throw new IllegalArgumentException("Parameter n must be a positive number and less than " +
+          "the number of cards in the deck of cards");
+    }
+
+    Random random = new Random();
+
+    for (int i = 0; i < n; i++) {
+      handOfCards.add(this.deckOfCards.dealCard(random.nextInt(deckOfCards.getNumberOfCards())));
+    }
   }
 
   public void printHand() {
