@@ -61,6 +61,14 @@ public class HandOfCards {
     return true;
   }
 
+  public int getSumOfCards() {
+    int sum = 0;
+    for (PlayingCard card : handOfCards) {
+      sum += card.getFace();
+    }
+    return sum;
+  }
+
   public void printHand() {
     for (PlayingCard card : handOfCards) {
       System.out.println(card.getAsString());
