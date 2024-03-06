@@ -73,6 +73,7 @@ public class CardGameUi extends Application {
       } catch (Exception e) {
         System.out.println("Error: " + e.getMessage());
       }
+      hand.printHand();
     }
   }
 
@@ -82,22 +83,42 @@ public class CardGameUi extends Application {
   }
 
   public void viewCardInfo() {
-    String isFlush = "Hand is not a flush";
-    if (hand.isFlush()) {
-      isFlush = "Hand is a flush";
+    if (hand != null) {
+      String isFlush = "Hand isn't a flush";
+      String hasS12String = "Hand doesn't contain S12";
+      if (hand.isFlush()) {
+        isFlush = "Hand is a flush";
+      }
+      if (hand.hasS12()) {
+        hasS12String = "Hand contains S12";
+      }
+      statsGrid.getChildren().clear();
+
+      Label sumOfCards = new javafx.scene.control.Label("Sum of cards: " + hand.getSumOfCards());
+      sumOfCards.setStyle("-fx-font-size: 20px");
+      sumOfCards.setTextFill(javafx.scene.paint.Color.web("#ffffff"));
+
+      Label flush = new javafx.scene.control.Label(isFlush);
+      flush.setStyle("-fx-font-size: 20px");
+      flush.setTextFill(javafx.scene.paint.Color.web("#ffffff"));
+
+      Label hasS12 = new javafx.scene.control.Label(hasS12String);
+      hasS12.setStyle("-fx-font-size: 20px");
+      hasS12.setTextFill(javafx.scene.paint.Color.web("#ffffff"));
+
+      Label getHearts = new javafx.scene.control.Label("Hearts: " + hand.getHearts());
+      getHearts.setStyle("-fx-font-size: 20px");
+      getHearts.setTextFill(javafx.scene.paint.Color.web("#ffffff"));
+
+
+
+      statsGrid.add(sumOfCards, 0, 0);
+      statsGrid.add(flush, 0, 1);
+      statsGrid.add(hasS12, 1, 0);
+      statsGrid.add(getHearts, 1, 1);
+
+      statsGrid.setHgap(40);
     }
-    statsGrid.getChildren().clear();
-
-    Label sumOfCards = new javafx.scene.control.Label("Sum of cards: " + hand.getSumOfCards());
-    sumOfCards.setStyle("-fx-font-size: 20px");
-    sumOfCards.setTextFill(javafx.scene.paint.Color.web("#ffffff"));
-
-    Label flush = new javafx.scene.control.Label(isFlush);
-    flush.setStyle("-fx-font-size: 20px");
-    flush.setTextFill(javafx.scene.paint.Color.web("#ffffff"));
-
-    statsGrid.add(sumOfCards, 0, 0);
-    statsGrid.add(flush, 0, 1);
   }
 
   public void checkHand() {

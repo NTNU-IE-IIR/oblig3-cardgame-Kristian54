@@ -51,7 +51,7 @@ public class HandOfCards {
    *
    * @return true if the hand of cards is a flush, false otherwise
    */
-  public boolean isFlush() {
+  public boolean isFlushOld() {
     char suit = handOfCards.get(0).getSuit();
     for (PlayingCard card : handOfCards) {
       if (card.getSuit() != suit) {
@@ -61,12 +61,50 @@ public class HandOfCards {
     return true;
   }
 
-  public int getSumOfCards() {
+  public int getSumOfCardsOld() {
     int sum = 0;
     for (PlayingCard card : handOfCards) {
       sum += card.getFace();
     }
     return sum;
+  }
+
+  /**
+   * Uses streams to check if the hand of cards is a flush.
+   *
+   * @return
+   */
+  public boolean isFlush() {
+    return handOfCards.stream().allMatch(card -> card.getSuit() == handOfCards.get(0).getSuit());
+  }
+
+  /**
+   * Uses streams to calculate the sum of the face values of the cards in the hand.
+   */
+  public int getSumOfCards() {
+    return handOfCards.stream().mapToInt(PlayingCard::getFace).sum();
+  }
+
+  /**
+   * Returns a list with playing cards of the suit 'H' (Hearts).
+   *
+   * @return
+   */
+  public ArrayList<String> getHearts() {
+    ArrayList<String> hearts = new ArrayList<String>();
+    for (PlayingCard card : handOfCards) {
+      if (card.getSuit() == 'H') {
+        hearts.add(card.getAsString());
+      }
+    }
+    return hearts;
+  }
+
+  /**
+   * Checks if the hand has S12.
+   */
+  public boolean hasS12() {
+    return handOfCards.stream().anyMatch(card -> card.getSuit() == 'S' && card.getFace() == 12);
   }
 
   public void printHand() {
