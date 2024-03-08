@@ -53,7 +53,7 @@ public class CardGameUi extends Application {
     handDisplay.setHgap(10);
     handDisplay.setAlignment(Pos.TOP_CENTER);
     handDisplay.setPadding(new javafx.geometry.Insets(40));
-    handDisplay.setStyle("-fx-background-color: #114611");
+    handDisplay.setStyle("-fx-background-color: #182a65");
     borderPane.setCenter(handDisplay);
   }
 
@@ -121,10 +121,6 @@ public class CardGameUi extends Application {
     }
   }
 
-  public void checkHand() {
-
-  }
-
   /**
    * Construct the main window.
    *
@@ -141,6 +137,10 @@ public class CardGameUi extends Application {
     stage.setScene(scene);
     stage.setTitle("Card Game");
     stage.show();
+
+    for (int i = 0; i < 50; i++) {
+      dealHand(borderPane);
+    }
   }
 
   public void addButtons() {
