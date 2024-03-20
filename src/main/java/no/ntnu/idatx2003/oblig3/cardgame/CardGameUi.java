@@ -62,7 +62,7 @@ public class CardGameUi extends Application {
 
     for (PlayingCard card : hand.getHandOfCards()) {
       try {
-        InputStream is = this.getClass().getResourceAsStream("/newCards/" + card.getAsString() + ".png");
+        InputStream is = this.getClass().getResourceAsStream("/" + card.getAsString() + ".png");
         Image cardImage = new Image(is);
         ImageView cardView = new ImageView(cardImage);
 
@@ -138,9 +138,7 @@ public class CardGameUi extends Application {
     stage.setTitle("Card Game");
     stage.show();
 
-    for (int i = 0; i < 50; i++) {
-      dealHand(borderPane);
-    }
+    dealHand(borderPane);
   }
 
   public void addButtons() {
